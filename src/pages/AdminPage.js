@@ -17,11 +17,17 @@ export default function AdminPage() {
   const fetchCandidates = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/admin/candidates`
+        `${process.env.REACT_APP_API_URL}/admin/candidates`,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+        }
       );
+      console.log(response)
       setCandidates(response.data);
     } catch (error) {
       setError("Failed to load candidates");
+      console.log(error)
     }
   };
 
@@ -35,25 +41,16 @@ export default function AdminPage() {
   const handleCreateCandidate = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/admin/candidate`,
-            formData,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            }
-        );
-        fetchCandidates(); // Refresh the list
-        setFormData({ name: "", age: "", party: "" }); // Clear form
-        setError("");
-        console.log(response);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/candidate`, formData);
+      fetchCandidates(); // Refresh the list
+      setFormData({ name: "", age: "", party: "" }); // Clear form
+      setError("");
+      console.log(response)
     } catch (error) {
-        setError("Failed to create candidate");
-        console.log(error);
+      setError("Failed to create candidate");
+      console.log(error)
     }
-};
-
+  };
 
   // Handle candidate update
   const handleUpdateCandidate = async (e) => {

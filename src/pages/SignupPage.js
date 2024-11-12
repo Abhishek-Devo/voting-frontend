@@ -47,13 +47,12 @@ export default function SignupPage() {
     };
     try {
       // Send a post request to create a new user
-      const response=await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`,
+       await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`,
         formData, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-      console.log(response)
 
       // Show success message and redirect to login page
       setSuccessMessage("User created successfully, please log in");

@@ -36,7 +36,7 @@ function LoginPage() {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
+      console.log(response.data);
 
       // Using localStorage to store token on successful login
       localStorage.setItem("token", response.data.token);

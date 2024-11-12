@@ -39,7 +39,7 @@ export default function ProfilePage() {
     const handleChangePassword = async (e) => {
         e.preventDefault();
         try {
-         await axios.put(
+             await axios.put(
                 `${process.env.REACT_APP_API_URL}/users/profile/password`,
                 { oldPassword, newPassword },
                 {

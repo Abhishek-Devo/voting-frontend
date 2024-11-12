@@ -13,7 +13,7 @@ export default function VotingPage() {
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/candidates`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URl}/candidates`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           },
@@ -29,7 +29,7 @@ export default function VotingPage() {
   // Handling voting for a candidate
   const handleVote = async (candidateId) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/candidates/${candidateId}/vote`, {}, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URl}/candidates/${candidateId}/vote`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
@@ -81,13 +81,12 @@ export default function VotingPage() {
   // Handle refreshing candidate data
   const handleRefresh = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/candidates`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URl}/candidates`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
       });
       setCandidates(response.data);
-      alert("List Updated ")
       setError("");
     } catch (error) {
       setError("Failed to refresh candidate data");
