@@ -13,7 +13,7 @@ export default function VotingPage() {
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URl}/candidates`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/candidates`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           },
